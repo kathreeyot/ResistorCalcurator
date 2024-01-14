@@ -1,0 +1,67 @@
+﻿@page "/counter"
+
+<h3>Resistor Calculator</h3>
+
+<div>
+    <label>Select the color bands:</label>
+    <div>
+        <label>Band 1:</label>
+        <select @bind="selectedColor1">
+            @foreach (var color in resistorColors)
+            {
+                <option value="@color">@color</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Band 2:</label>
+        <select @bind="selectedColor2">
+            @foreach (var color in resistorColors)
+            {
+                <option value="@color">@color</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Band 3:</label>
+        <select @bind="selectedColor3">
+            @foreach (var color in resistorColors)
+            {
+                <option value="@color">@color</option>
+            }
+        </select>
+    </div>
+
+
+    <div>
+        <button @onclick="CalculateResistance">Calculate Resistance</button>
+    </div>
+</div>
+
+<div>
+    <p>Resistance Value: @calculatedResistance ohms</p>
+</div>
+
+@code {
+    private string[] resistorColors = { "Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Grey", "White" };
+    private string selectedColor1 = "Black";
+    private string selectedColor2 = "Black";
+    private string selectedColor3 = "Black";
+
+
+    private int[] colorValues = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+    private int calculatedResistance = 0;
+
+    private void CalculateResistance()
+    {
+        int value1 = Array.IndexOf(resistorColors, selectedColor1);
+        int value2 = Array.IndexOf(resistorColors, selectedColor2);
+        int multiplier = (int)Math.Pow(10, Array.IndexOf(resistorColors, selectedColor3));
+
+        calculatedResistance = (value1 * 10 + value2) * multiplier;
+
+    }
+}
