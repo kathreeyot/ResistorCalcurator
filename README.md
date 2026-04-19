@@ -7,6 +7,6 @@
 
 - ⚡ **Thank for reading**
 
-- 🌱This project use **C# Maul**
+- 🌱This project use **C# Maui**
 
 
